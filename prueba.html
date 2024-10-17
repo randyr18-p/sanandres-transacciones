@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Andres Grocery and Bakery Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'azul-claro': '#478bbe',
+                        'azul-oscuro': '#1c4691',
+                        'fondo': '#ecf3f8',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-fondo min-h-screen flex flex-col">
+    <header class="bg-azul-oscuro text-white p-6 shadow-md">
+        <h1 class="text-3xl font-bold text-center">San Andres Grocery and Bakery</h1>
+        <p class="text-center mt-2 text-azul-claro">Your one-stop shop for groceries and services</p>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <div id="homepage" class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+            <button onclick="showForm('moneyTransfer')" class="bg-azul-claro text-white p-8 rounded-lg shadow-lg hover:bg-azul-oscuro transition-colors duration-300 transform hover:scale-105">
+                <h2 class="text-2xl font-semibold mb-3">Money Transfer</h2>
+                <p class="text-lg">Send money to friends and family securely</p>
+            </button>
+            <button onclick="showForm('mobileRecharge')" class="bg-white text-azul-oscuro p-8 rounded-lg shadow-lg hover:bg-azul-claro hover:text-white transition-colors duration-300 transform hover:scale-105">
+                <h2 class="text-2xl font-semibold mb-3">Mobile Recharge</h2>
+                <p class="text-lg">Recharge your mobile phone instantly</p>
+            </button>
+        </div>
+
+        <div id="moneyTransferForm" class="hidden bg-white p-6 rounded-lg shadow-lg mt-8">
+            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Money Transfer</h2>
+            <form id="transferForm" class="space-y-4">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="senderName" class="block mb-1 text-azul-oscuro">Sender's Name</label>
+                        <input type="text" id="senderName" name="senderName" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                    </div>
+                    <div>
+                        <label for="senderPhone" class="block mb-1 text-azul-oscuro">Sender's Phone Number</label>
+                        <input type="tel" id="senderPhone" name="senderPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="receiverName" class="block mb-1 text-azul-oscuro">Receiver's Name</label>
+                        <input type="text" id="receiverName" name="receiverName" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                    </div>
+                    <div>
+                        <label for="receiverPhone" class="block mb-1 text-azul-oscuro">Receiver's Phone Number</label>
+                        <input type="tel" id="receiverPhone" name="receiverPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                    </div>
+                </div>
+                <div>
+                    <label for="receiverBank" class="block mb-1 text-azul-oscuro">Receiver's Bank Account</label>
+                    <input type="text" id="receiverBank" name="receiverBank" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                </div>
+                <div>
+                    <label for="amount" class="block mb-1 text-azul-oscuro">Transfer Amount</label>
+                    <input type="number" id="amount" name="amount" required min="0" step="0.01" class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                </div>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="country" class="block mb-1 text-azul-oscuro">Receiver's Country</label>
+                        <input type="text" id="country" name="country" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                    </div>
+                    <div>
+                        <label for="city" class="block mb-1 text-azul-oscuro">Receiver's City</label>
+                        <input type="text" id="city" name="city" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                    </div>
+                    <div>
+                        <label for="state" class="block mb-1 text-azul-oscuro">Receiver's State</label>
+                        <input type="text" id="state" name="state" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Submit Transfer</button>
+            </form>
+        </div>
+
+        <div id="mobileRechargeForm" class="hidden bg-white p-6 rounded-lg shadow-lg mt-8">
+            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Mobile Recharge</h2>
+            <form id="rechargeForm" class="space-y-4">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="rechargeSenderName" class="block mb-1 text-azul-oscuro">Sender's Name</label>
+                        <input type="text" id="rechargeSenderName" name="rechargeSenderName" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                    </div>
+                    <div>
+                        <label for="rechargeSenderPhone" class="block mb-1 text-azul-oscuro">Sender's Phone Number</label>
+                        <input type="tel" id="rechargeSenderPhone" name="rechargeSenderPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                    </div>
+                </div>
+                <div>
+                    <label for="rechargeReceiverPhone" class="block mb-1 text-azul-oscuro">Receiver's Phone Number</label>
+                    <input type="tel" id="rechargeReceiverPhone" name="rechargeReceiverPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                </div>
+                <div>
+                    <label for="rechargeAmount" class="block mb-1 text-azul-oscuro">Recharge Amount</label>
+                    <input type="number" id="rechargeAmount" name="rechargeAmount" required min="0" step="0.01" class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                </div>
+                <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Submit Recharge</button>
+            </form>
+        </div>
+
+        <div id="confirmationPage" class="hidden bg-white p-6 rounded-lg shadow-lg mt-8">
+            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Transaction Confirmation</h2>
+            <div id="confirmationDetails" class="bg-fondo p-4 rounded-lg"></div>
+            <button onclick="goToHomepage()" class="mt-6 w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Back to Homepage</button>
+        </div>
+    </main>
+
+    <footer class="bg-azul-oscuro text-white p-4 text-center mt-8">
+        <p>&copy; 2023 San Andres Grocery and Bakery. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showForm(formType) {
+            document.getElementById('homepage').classList.add('hidden');
+            document.getElementById('moneyTransferForm').classList.add('hidden');
+            document.getElementById('mobileRechargeForm').classList.add('hidden');
+            document.getElementById('confirmationPage').classList.add('hidden');
+            document.getElementById(`${formType}Form`).classList.remove('hidden');
+        }
+
+        function goToHomepage() {
+            document.getElementById('homepage').classList.remove('hidden');
+            document.getElementById('moneyTransferForm').classList.add('hidden');
+            document.getElementById('mobileRechargeForm').classList.add('hidden');
+            document.getElementById('confirmationPage').classList.add('hidden');
+        }
+
+        function showConfirmation(details) {
+            document.getElementById('homepage').classList.add('hidden');
+            document.getElementById('moneyTransferForm').classList.add('hidden');
+            document.getElementById('mobileRechargeForm').classList.add('hidden');
+            document.getElementById('confirmationPage').classList.remove('hidden');
+            document.getElementById('confirmationDetails').innerHTML = details;
+        }
+
+        document.getElementById('transferForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const details = `
+                <p class="mb-2"><strong class="text-azul-oscuro">Transaction Type:</strong> Money Transfer</p>
+                <p class="mb-2"><strong class="text-azul-oscuro">Status:</strong> <span class="text-yellow-600">Pending</span></p>
+                <p class="mb-2"><strong class="text-azul-oscuro">Reference Number:</strong> ${Math.random().toString(36).substr(2, 9).toUpperCase()}</p>
+                <p class="mb-2"><strong class="text-azul-oscuro">Sender:</strong> ${formData.get('senderName')}</p>
+                <p class="mb-2"><strong class="text-azul-oscuro">Receiver:</strong> ${formData.get('receiverName')}</p>
+                <p class="mb-2"><strong class="text-azul-oscuro">Amount:</strong> $${formData.get('amount')}</p>
+                <p class="mb-2"><strong class="text-azul-oscuro">Destination:</strong> ${formData.get('city')}, ${formData.get('state')}, ${formData.get('country')}</p>
+            `;
+            showConfirmation(details);
+        });
+
+        document.getElementById('rechargeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const details = `
+                <p class="mb-2"><strong class="text-azul-oscuro">Transaction Type:</strong> Mobile Recharge</p>
+                <p class="mb-2"><strong class="text-azul-oscuro">Status:</strong> <span class="text-yellow-600">Pending</span></p>
+                <p class="mb-2"><strong class="text-azul-oscuro">Reference Number:</strong> ${Math.random().toString(36).substr(2, 9).toUpperCase()}</p>
+                <p class="mb-2"><strong class="text-azul-oscuro">Sender:</strong> ${formData.get('rechargeSenderName')}</p>
+                <p class="mb-2"><strong class="text-azul-oscuro">Receiver's Phone:</strong> ${formData.get('rechargeReceiverPhone')}</p>
+                <p class="mb-2"><strong class="text-azul-oscuro">Amount:</strong> $${formData.get('rechargeAmount')}</p>
+            `;
+            showConfirmation(details);
+        });
+
+        // Simple form validation
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                if (!form.checkValidity()) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            });
+        });
+    </script>
+</body>
+</html>

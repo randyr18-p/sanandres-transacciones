@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mobile Recharge - San Andres Grocery & Bakery</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #ecf3f8;
+        }
+    </style>
+</head>
+<body class="bg-fondo">
+
+    <header class="bg-azul-oscuro p-6">
+        <div class="container mx-auto text-center">
+            <img src="./img/San Andres Logo - 2.svg" alt="San Andres Grocery & Bakery Logo" class="mx-auto w-32 h-32 mb-4">
+            <h1 class="text-white text-3xl font-semibold">San Andres Grocery & Bakery</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-8">
+        <h2 class="text-2xl font-semibold mb-6 text-center text-azul-oscuro">Mobile Recharge Form</h2>
+
+        <form id="rechargeForm" class="bg-white p-6 rounded-lg shadow-md space-y-6" action="/api/recharges" method="POST">
+            <!-- Sender Details -->
+            <div>
+                <label for="senderName" class="block text-azul-oscuro mb-2">Sender's Name</label>
+                <input type="text" id="senderName" name="senderName" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-azul-claro" required>
+            </div>
+            <div>
+                <label for="senderPhone" class="block text-azul-oscuro mb-2">Sender's Phone Number</label>
+                <input type="tel" id="senderPhone" name="senderPhone" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-azul-claro" required>
+            </div>
+
+            <!-- Receiver Details -->
+            <div>
+                <label for="receiverPhone" class="block text-azul-oscuro mb-2">Receiver's Phone Number</label>
+                <input type="tel" id="receiverPhone" name="receiverPhone" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-azul-claro" required>
+            </div>
+
+            <!-- Recharge Amount -->
+            <div>
+                <label for="rechargeAmount" class="block text-azul-oscuro mb-2">Recharge Amount</label>
+                <input type="number" id="rechargeAmount" name="rechargeAmount" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-azul-claro" required>
+            </div>
+
+            <!-- Submit Button with Loading Spinner -->
+            <button type="submit" id="submitButton" class="w-full bg-azul-claro text-white py-3 rounded-lg hover:bg-azul-oscuro flex justify-center items-center">
+                <span id="submitText">Submit Recharge</span>
+                <svg id="spinner" class="hidden ml-3 w-5 h-5 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                </svg>
+            </button>
+
+            <!-- Recharge Status -->
+            <p id="rechargeStatus" class="mt-4 text-center text-green-500"></p>
+        </form>
+    </main>
+
+    <script>
+        const form = document.getElementById('rechargeForm');
+        const submitButton = document.getElementById('submitButton');
+        const submitText = document.getElementById('submitText');
+        const spinner = document.getElementById('spinner');
+        const statusMessage = document.getElementById('rechargeStatus');
+
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            submitText.textContent = '';
+            spinner.classList.remove('hidden');
+
+            const formData = new FormData(form);
+            try {
+                const response = await fetch('/api/recharges', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                statusMessage.textContent = result.message;
+            } catch (error) {
+                statusMessage.textContent = "Recharge failed, please try again.";
+            } finally {
+                spinner.classList.add('hidden');
+                submitText.textContent = 'Submit Recharge';
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+ /* Extending Tailwind's default colors */
+ .bg-azul-claro {
+    background-color: #478bbe;
+}
+.bg-azul-oscuro {
+    background-color: #1c4691;
+}
+.bg-fondo {
+    background-color: #ecf3f8;
+}
+.text-azul-claro {
+    color: #478bbe;
+}
+.text-azul-oscuro {
+    color: #1c4691;
+}
