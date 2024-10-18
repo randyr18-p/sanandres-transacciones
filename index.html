@@ -26,7 +26,9 @@
     </style>
 </head>
 <body class="bg-fondo min-h-screen flex flex-col">
+    
     <header class="bg-azul-oscuro text-white p-6 shadow-md">
+        <button id="backButton" class="bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold self-start ml-6 mt-4">Back</button>
         <h1 class="text-3xl font-bold text-center">San Andres Grocery and Bakery</h1>
         <p class="text-center mt-2 text-white">9740 Main St, Woodstoock, GA 30188</p>
         <p class="text-center mt-2 text-white">Tel: 770 924 - 3106</p>
@@ -36,7 +38,7 @@
     <main class="flex-grow container mx-auto px-4 py-8">
         <h2 class="text-xl text-center font-semibold text-azul-oscuro mb-10">Por favor elija <strong>su servicios </strong>en nuestra oficina</h2>
         <div id="homepage" class="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8 mt-8">
-            <button onclick="showForm('moneyTransfer')" class="bg-azul-claro text-white p-8 rounded-lg shadow-lg hover:bg-azul-oscuro transition-colors duration-300 transform hover:scale-105">
+            <button onclick="showForm('moneySend')" class="bg-azul-claro text-white p-8 rounded-lg shadow-lg hover:bg-azul-oscuro transition-colors duration-300 transform hover:scale-105">
                 <h2 class="text-2xl font-semibold mb-3">Envio de Dinero</h2>
                 <p class="text-lg">Envía dinero a amigos y familiares de forma segura</p>
             </button>
@@ -53,35 +55,50 @@
         <p class="text-xl text-center font-semibold text-azul-oscuro mb-4 mt-20">Darles lo mejor es nuestra prioridad gracias</p>
         <p class="text-xl text-center font-semibold text-azul-oscuro mb-4">Le estaremos informando la  tarifa de los <strong>mejores pagadores</strong></p>
         
-        <div id="moneyTransferForm" class="hidden bg-white p-6 rounded-lg shadow-lg mt-8">
-            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Money Transfer</h2>
-            <form id="transferForm" class="space-y-4">
+        <div id="moneySendForm" class="hidden bg-white p-6 rounded-lg shadow-lg mt-8">
+            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Formulario de Envio de Dinero </h2>
+            <form id="sendForm" class="space-y-4">
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
-                        <label for="senderName" class="block mb-1 text-azul-oscuro">Sender's Name</label>
+                        <label for="senderName" class="block mb-1 text-azul-oscuro">Nombre del que Envia</label>
                         <input type="text" id="senderName" name="senderName" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                     <div>
-                        <label for="senderPhone" class="block mb-1 text-azul-oscuro">Sender's Phone Number</label>
+                        <label for="senderPhone" class="block mb-1 text-azul-oscuro">Numero de Telefono del que envia</label>
                         <input type="tel" id="senderPhone" name="senderPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                 </div>
+                <div>
+                    <label for="email" class="block mb-1 text-azul-oscuro">Correo Electronico</label>
+                    <input type="email" id="email" name="email" required min="0" step="0.01" class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                </div>
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
-                        <label for="receiverName" class="block mb-1 text-azul-oscuro">Receiver's Name</label>
+                        <label for="receiverName" class="block mb-1 text-azul-oscuro">Nombre del destinatario</label>
                         <input type="text" id="receiverName" name="receiverName" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                     <div>
-                        <label for="receiverPhone" class="block mb-1 text-azul-oscuro">Receiver's Phone Number</label>
+                        <label for="receiverPhone" class="block mb-1 text-azul-oscuro">Numero Telefononico del destinatario</label>
                         <input type="tel" id="receiverPhone" name="receiverPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                 </div>
                 <div>
-                    <label for="receiverBank" class="block mb-1 text-azul-oscuro">Receiver's Bank Account</label>
+                    <label for="typeAcount" class="block mb-1 text-azul-oscuro">Tipo de Cuenta</label>
+                    <select id="typeAcount" name="typeAcount" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                        <option value="" disabled selected>Seleccione el tipo de cuenta</option>
+                        <option value="ahorro">Ahorro</option>
+                        <option value="monetaria">Monetaria</option>
+                        <option value="credito">Crédito</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="receiverBank" class="block mb-1 text-azul-oscuro">Numero de cuenta de banco del destinatario</label>
                     <input type="text" id="receiverBank" name="receiverBank" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                 </div>
+                
                 <div>
-                    <label for="amount" class="block mb-1 text-azul-oscuro">Transfer Amount</label>
+                    <label for="amount" class="block mb-1 text-azul-oscuro">Trasfer Amount</label>
                     <input type="number" id="amount" name="amount" required min="0" step="0.01" class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                 </div>
                 <div class="grid md:grid-cols-3 gap-4">
@@ -98,6 +115,39 @@
                         <input type="text" id="state" name="state" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                 </div>
+                <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Submit Transfer</button>
+            </form>
+        </div>
+        <div id="moneyTransferForm" class="hidden bg-white p-6 rounded-lg shadow-lg mt-8">
+            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Money Transfer</h2>
+            <form id="transferForm" class="space-y-4">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="senderName" class="block mb-1 text-azul-oscuro">Sender's Name</label>
+                        <input type="text" id="senderName" name="senderName" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                    </div>
+                    <div>
+                        <label for="senderPhone" class="block mb-1 text-azul-oscuro">Sender's Phone Number</label>
+                        <input type="tel" id="senderPhone" name="senderPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                    </div>
+                </div>
+                <div>
+                    <label for="moneyOrder" class="block mb-1 text-azul-oscuro">Money Order</label>
+                    <select id="moneyOrder" name="moneyOrder" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro" onchange="renderMoneyOrderInputs()">
+                        <option value="" disabled selected>Select amount</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <div id="moneyOrderInputsContainer"></div>
+                <div>
+                    <label for="amount" class="block mb-1 text-azul-oscuro">Total Amount</label>
+                    <input type="number" id="amount" name="amount" required min="0" step="0.01" class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                </div>
+                
+                
                 <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Submit Transfer</button>
             </form>
         </div>
@@ -138,70 +188,6 @@
         <p>&copy; 2023 San Andres Grocery and Bakery. All rights reserved.</p>
     </footer>
 
-    <script>
-        function showForm(formType) {
-            document.getElementById('homepage').classList.add('hidden');
-            document.getElementById('moneyTransferForm').classList.add('hidden');
-            document.getElementById('mobileRechargeForm').classList.add('hidden');
-            document.getElementById('confirmationPage').classList.add('hidden');
-            document.getElementById(`${formType}Form`).classList.remove('hidden');
-        }
-
-        function goToHomepage() {
-            document.getElementById('homepage').classList.remove('hidden');
-            document.getElementById('moneyTransferForm').classList.add('hidden');
-            document.getElementById('mobileRechargeForm').classList.add('hidden');
-            document.getElementById('confirmationPage').classList.add('hidden');
-        }
-
-        function showConfirmation(details) {
-            document.getElementById('homepage').classList.add('hidden');
-            document.getElementById('moneyTransferForm').classList.add('hidden');
-            document.getElementById('mobileRechargeForm').classList.add('hidden');
-            document.getElementById('confirmationPage').classList.remove('hidden');
-            document.getElementById('confirmationDetails').innerHTML = details;
-        }
-
-        document.getElementById('transferForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const details = `
-                <p class="mb-2"><strong class="text-azul-oscuro">Transaction Type:</strong> Money Transfer</p>
-                <p class="mb-2"><strong class="text-azul-oscuro">Status:</strong> <span class="text-yellow-600">Pending</span></p>
-                <p class="mb-2"><strong class="text-azul-oscuro">Reference Number:</strong> ${Math.random().toString(36).substr(2, 9).toUpperCase()}</p>
-                <p class="mb-2"><strong class="text-azul-oscuro">Sender:</strong> ${formData.get('senderName')}</p>
-                <p class="mb-2"><strong class="text-azul-oscuro">Receiver:</strong> ${formData.get('receiverName')}</p>
-                <p class="mb-2"><strong class="text-azul-oscuro">Amount:</strong> $${formData.get('amount')}</p>
-                <p class="mb-2"><strong class="text-azul-oscuro">Destination:</strong> ${formData.get('city')}, ${formData.get('state')}, ${formData.get('country')}</p>
-            `;
-            showConfirmation(details);
-        });
-
-        document.getElementById('rechargeForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const details = `
-                <p class="mb-2"><strong class="text-azul-oscuro">Transaction Type:</strong> Mobile Recharge</p>
-                <p class="mb-2"><strong class="text-azul-oscuro">Status:</strong> <span class="text-yellow-600">Pending</span></p>
-                <p class="mb-2"><strong class="text-azul-oscuro">Reference Number:</strong> ${Math.random().toString(36).substr(2, 9).toUpperCase()}</p>
-                <p class="mb-2"><strong class="text-azul-oscuro">Sender:</strong> ${formData.get('rechargeSenderName')}</p>
-                <p class="mb-2"><strong class="text-azul-oscuro">Receiver's Phone:</strong> ${formData.get('rechargeReceiverPhone')}</p>
-                <p class="mb-2"><strong class="text-azul-oscuro">Amount:</strong> $${formData.get('rechargeAmount')}</p>
-            `;
-            showConfirmation(details);
-        });
-
-        // Simple form validation
-        const forms = document.querySelectorAll('form');
-        forms.forEach(form => {
-            form.addEventListener('submit', function(e) {
-                if (!form.checkValidity()) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            });
-        });
-    </script>
+    <script src="./app.js"></script>
 </body>
 </html>
