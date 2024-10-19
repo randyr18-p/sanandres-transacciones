@@ -27,12 +27,22 @@
 </head>
 <body class="bg-fondo min-h-screen flex flex-col">
     
-    <header class="bg-azul-oscuro text-white p-6 shadow-md">
-        <button id="backButton" class="bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold self-start ml-6 mt-4">Back</button>
-        <h1 class="text-3xl font-bold text-center">San Andres Grocery and Bakery</h1>
-        <p class="text-center mt-2 text-white">9740 Main St, Woodstoock, GA 30188</p>
-        <p class="text-center mt-2 text-white">Tel: 770 924 - 3106</p>
-        <p class="text-center mt-2 text-white">sanandresgrocery@gmail.com</p>
+    <header class="bg-azul-oscuro text-white p-6 shadow-md flex justify-between items-center">
+        <div class="ml-6">
+            <button id="backButton" class="bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                Back
+            </button>
+        </div>
+        <div class="text-center mx-auto">
+            <h1 class="text-3xl font-bold">San Andres Grocery and Bakery</h1>
+            <p class="mt-2">9740 Main St, Woodstoock, GA 30188</p>
+            <p class="mt-2">Tel: 770 924 - 3106</p>
+            <p class="mt-2">sanandresgrocery@gmail.com</p>
+        </div>
+        
     </header>
 
     <main class="flex-grow container mx-auto px-4 py-8">
@@ -47,7 +57,7 @@
                 <p class="text-lg">Recharge your mobile phone instantly</p>
             </button>
             <button onclick="showForm('moneyTransfer')" class="bg-white text-azul-oscuro p-8 rounded-lg shadow-lg hover:bg-azul-claro hover:text-white transition-colors duration-300 transform hover:scale-105">
-                <h2 class="text-2xl font-semibold mb-3">Envios de Giro Postal</h2>
+                <h2 class="text-2xl font-semibold mb-3">Money Orders</h2>
                 <p class="text-lg">Envía dinero a amigos y familiares de forma segura</p>
             </button>
 
@@ -98,43 +108,43 @@
                 </div>
                 
                 <div>
-                    <label for="amount" class="block mb-1 text-azul-oscuro">Trasfer Amount</label>
+                    <label for="amount" class="block mb-1 text-azul-oscuro">Monto de la Trasferencia</label>
                     <input type="number" id="amount" name="amount" required min="0" step="0.01" class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                 </div>
                 <div class="grid md:grid-cols-3 gap-4">
                     <div>
-                        <label for="country" class="block mb-1 text-azul-oscuro">Receiver's Country</label>
+                        <label for="country" class="block mb-1 text-azul-oscuro">Pais destinatario</label>
                         <input type="text" id="country" name="country" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                     <div>
-                        <label for="city" class="block mb-1 text-azul-oscuro">Receiver's City</label>
+                        <label for="city" class="block mb-1 text-azul-oscuro">Ciudad destinatario</label>
                         <input type="text" id="city" name="city" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                     <div>
-                        <label for="state" class="block mb-1 text-azul-oscuro">Receiver's State</label>
+                        <label for="state" class="block mb-1 text-azul-oscuro">Estado destinatario </label>
                         <input type="text" id="state" name="state" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Submit Transfer</button>
+                <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Envio Transferencia</button>
             </form>
         </div>
         <div id="moneyTransferForm" class="hidden bg-white p-6 rounded-lg shadow-lg mt-8">
-            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Money Transfer</h2>
+            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Money Order</h2>
             <form id="transferForm" class="space-y-4">
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
-                        <label for="senderName" class="block mb-1 text-azul-oscuro">Sender's Name</label>
+                        <label for="senderName" class="block mb-1 text-azul-oscuro">Nambre</label>
                         <input type="text" id="senderName" name="senderName" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                     <div>
-                        <label for="senderPhone" class="block mb-1 text-azul-oscuro">Sender's Phone Number</label>
+                        <label for="senderPhone" class="block mb-1 text-azul-oscuro">numero de Telefono</label>
                         <input type="tel" id="senderPhone" name="senderPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                 </div>
                 <div>
                     <label for="moneyOrder" class="block mb-1 text-azul-oscuro">Money Order</label>
                     <select id="moneyOrder" name="moneyOrder" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro" onchange="renderMoneyOrderInputs()">
-                        <option value="" disabled selected>Select amount</option>
+                        <option value="" disabled selected>Seleccione cantidad</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -143,49 +153,49 @@
                 </div>
                 <div id="moneyOrderInputsContainer"></div>
                 <div>
-                    <label for="amount" class="block mb-1 text-azul-oscuro">Total Amount</label>
+                    <label for="amount" class="block mb-1 text-azul-oscuro">Total Cantidad</label>
                     <input type="number" id="amount" name="amount" required min="0" step="0.01" class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                 </div>
                 
                 
-                <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Submit Transfer</button>
+                <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Envio Transferencia</button>
             </form>
         </div>
 
         <div id="mobileRechargeForm" class="hidden bg-white p-6 rounded-lg shadow-lg mt-8">
-            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Mobile Recharge</h2>
+            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Recargas</h2>
             <form id="rechargeForm" class="space-y-4">
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
-                        <label for="rechargeSenderName" class="block mb-1 text-azul-oscuro">Sender's Name</label>
+                        <label for="rechargeSenderName" class="block mb-1 text-azul-oscuro"> Name</label>
                         <input type="text" id="rechargeSenderName" name="rechargeSenderName" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                     <div>
-                        <label for="rechargeSenderPhone" class="block mb-1 text-azul-oscuro">Sender's Phone Number</label>
+                        <label for="rechargeSenderPhone" class="block mb-1 text-azul-oscuro">Telefono</label>
                         <input type="tel" id="rechargeSenderPhone" name="rechargeSenderPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                 </div>
                 <div>
-                    <label for="rechargeReceiverPhone" class="block mb-1 text-azul-oscuro">Receiver's Phone Number</label>
+                    <label for="rechargeReceiverPhone" class="block mb-1 text-azul-oscuro">Telefono destinatario</label>
                     <input type="tel" id="rechargeReceiverPhone" name="rechargeReceiverPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                 </div>
                 <div>
-                    <label for="rechargeAmount" class="block mb-1 text-azul-oscuro">Recharge Amount</label>
+                    <label for="rechargeAmount" class="block mb-1 text-azul-oscuro">Cantidad de la recarga</label>
                     <input type="number" id="rechargeAmount" name="rechargeAmount" required min="0" step="0.01" class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                 </div>
-                <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Submit Recharge</button>
+                <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Envio de Recarga</button>
             </form>
         </div>
 
         <div id="confirmationPage" class="hidden bg-white p-6 rounded-lg shadow-lg mt-8">
-            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Transaction Confirmation</h2>
+            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Confirmacion de la transaccion</h2>
             <div id="confirmationDetails" class="bg-fondo p-4 rounded-lg"></div>
             <button onclick="goToHomepage()" class="mt-6 w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Back to Homepage</button>
         </div>
     </main>
 
     <footer class="bg-azul-oscuro text-white p-4 text-center mt-8">
-        <p>&copy; 2023 San Andres Grocery and Bakery. All rights reserved.</p>
+        <p>&copy; 2024 San Andres Grocery and Bakery. All rights reserved.</p>
     </footer>
 
     <script src="./app.js"></script>
