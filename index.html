@@ -84,18 +84,21 @@
                 </div>
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
-                        <label for="receiverName" class="block mb-1 text-azul-oscuro">Nombre del destinatario</label>
+                        <label for="receiverName" class="block mb-1 text-azul-oscuro">Nombre de la persona que recibe</label>
                         <input type="text" id="receiverName" name="receiverName" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                     <div>
-                        <label for="receiverPhone" class="block mb-1 text-azul-oscuro">Numero Telefononico del destinatario</label>
+                        <label for="receiverPhone" class="block mb-1 text-azul-oscuro">Numero Telefononico de la persona que recibe</label>
                         <input type="tel" id="receiverPhone" name="receiverPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                 </div>
                 <div>
-                    <label for="typeAcount" class="block mb-1 text-azul-oscuro">Tipo de Cuenta</label>
+                <h2 class="text-2xl font-semibold mb-4 text-azul-oscuro">Deposito a cuenta bancaria</h2>
+                </div>
+                <div>
+                    <label for="typeAcount" class="block mb-1 text-azul-oscuro">Nombre de la Cuenta</label>
                     <select id="typeAcount" name="typeAcount" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
-                        <option value="" disabled selected>Seleccione el tipo de cuenta</option>
+                        <option value="" disabled selected>Seleccione el nombre de la cuenta</option>
                         <option value="ahorro">Ahorro</option>
                         <option value="monetaria">Monetaria</option>
                         <option value="credito">Crédito</option>
@@ -103,12 +106,12 @@
                 </div>
                 
                 <div>
-                    <label for="receiverBank" class="block mb-1 text-azul-oscuro">Numero de cuenta de banco del destinatario</label>
+                    <label for="receiverBank" class="block mb-1 text-azul-oscuro">Numero de cuenta </label>
                     <input type="text" id="receiverBank" name="receiverBank" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                 </div>
                 
                 <div>
-                    <label for="amount" class="block mb-1 text-azul-oscuro">Monto de la Trasferencia</label>
+                    <label for="amount" class="block mb-1 text-azul-oscuro">Cuanto desea enviar</label>
                     <input type="number" id="amount" name="amount" required min="0" step="0.01" class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                 </div>
                 <div class="grid md:grid-cols-3 gap-4">
@@ -133,7 +136,7 @@
             <form id="transferForm" class="space-y-4">
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
-                        <label for="senderName" class="block mb-1 text-azul-oscuro">Nambre</label>
+                        <label for="senderName" class="block mb-1 text-azul-oscuro">Nombre</label>
                         <input type="text" id="senderName" name="senderName" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                     <div>
@@ -167,7 +170,7 @@
             <form id="rechargeForm" class="space-y-4">
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
-                        <label for="rechargeSenderName" class="block mb-1 text-azul-oscuro"> Name</label>
+                        <label for="rechargeSenderName" class="block mb-1 text-azul-oscuro"> Nombre</label>
                         <input type="text" id="rechargeSenderName" name="rechargeSenderName" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                     <div>
