@@ -51,12 +51,12 @@
         <h2 class="text-xl text-center font-semibold text-azul-oscuro mb-10">Por favor elija <strong>su servicios </strong>en nuestra oficina</h2>
         <div id="homepage" class="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8 mt-8">
             <button onclick="showForm('moneySend')" class="bg-azul-claro text-white p-8 rounded-lg shadow-lg hover:bg-azul-oscuro transition-colors duration-300 transform hover:scale-105">
-                <h2 class="text-2xl font-semibold mb-3">Envio de Dinero</h2>
+                <h2 class="text-2xl font-semibold mb-3">Envío de Dinero</h2>
                 <p class="text-lg">Envía dinero a amigos y familiares de forma segura</p>
             </button>
             <button onclick="showForm('mobileRecharge')" class="bg-white text-azul-oscuro p-8 rounded-lg shadow-lg hover:bg-azul-claro hover:text-white transition-colors duration-300 transform hover:scale-105">
-                <h2 class="text-2xl font-semibold mb-3">Recargas Telefonicas</h2>
-                <p class="text-lg">Recarga tu celular  rapidamente</p>
+                <h2 class="text-2xl font-semibold mb-3">Recargas Telefónicas</h2>
+                <p class="text-lg">Recarga tu celular  rápidamente</p>
             </button>
             <button onclick="showForm('moneyTransfer')" class="bg-white text-azul-oscuro p-8 rounded-lg shadow-lg hover:bg-azul-claro hover:text-white transition-colors duration-300 transform hover:scale-105">
                 <h2 class="text-2xl font-semibold mb-3">Money Orders</h2>
@@ -64,28 +64,28 @@
             </button>
 
         </div>
-        <p class="text-xl text-center font-semibold text-azul-oscuro mb-4 mt-20">Darles lo mejor es nuestra prioridad gracias</p>
+        <p class="text-xl text-center font-semibold text-azul-oscuro mb-4 mt-20">Darles lo mejor es nuestra prioridad, gracias</p>
         <p class="text-xl text-center font-semibold text-azul-oscuro mb-4">Le estaremos informando la  tarifa de los <strong>mejores pagadores</strong></p>
         
         <div id="moneySendForm" class="hidden bg-white p-6 rounded-lg shadow-lg mt-8">
-            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Formulario de Envio de Dinero </h2>
+            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Formulario de Envío de Dinero </h2>
             <form id="sendForm" class="space-y-4">
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
-                        <label for="senderName" class="block mb-1 text-azul-oscuro">Nombre del que Envia</label>
+                        <label for="senderName" class="block mb-1 text-azul-oscuro">Nombre del que envía</label>
                         <input type="text" id="senderName" name="senderName" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                     <div>
-                        <label for="senderPhone" class="block mb-1 text-azul-oscuro">Numero de Telefono del que envia</label>
+                        <label for="senderPhone" class="block mb-1 text-azul-oscuro">Número de Teléfono del que envía</label>
                         <input type="tel" id="senderPhone" name="senderPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                 </div>
                 <div>
-                    <label for="email" class="block mb-1 text-azul-oscuro">Correo Electronico (si lo desea) </label>
+                    <label for="email" class="block mb-1 text-azul-oscuro">Correo Electrónico (si lo desea) </label>
                     <input type="email" id="email" name="email" required min="0" step="0.01" class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                 </div>
                 <div>
-                    <h2 class="text-2xl font-semibold mb-4 text-azul-oscuro">Deposito a cuenta bancaria</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-azul-oscuro">Depósito a Cuenta Bancaria</h2>
                 </div>
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
@@ -93,7 +93,7 @@
                         <input type="text" id="receiverName" name="receiverName" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                     <div>
-                        <label for="receiverPhone" class="block mb-1 text-azul-oscuro">Numero Telefononico de la persona que recibe</label>
+                        <label for="receiverPhone" class="block mb-1 text-azul-oscuro">Número Telefónico de la persona que recibe</label>
                         <input type="tel" id="receiverPhone" name="receiverPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                 </div>
@@ -108,12 +108,12 @@
                 </div>
                 
                 <div>
-                    <label for="receiverBank" class="block mb-1 text-azul-oscuro">Numero de cuenta </label>
+                    <label for="receiverBank" class="block mb-1 text-azul-oscuro">Número de cuenta </label>
                     <input type="text" id="receiverBank" name="receiverBank" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                 </div>
                 
                 <div>
-                    <label for="amount" class="block mb-1 text-azul-oscuro">Cuanto desea enviar</label>
+                    <label for="amount" class="block mb-1 text-azul-oscuro">Cuánto desea enviar</label>
                     <input type="number" id="amount" name="amount" required min="0" step="0.01" class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                 </div>
                 <div class="grid md:grid-cols-3 gap-4">
@@ -132,7 +132,7 @@
                     
                     
                 </div>
-                <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Envio Transferencia</button>
+                <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Envío Transferencia</button>
             </form>
         </div>
         <div id="moneyTransferForm" class="hidden bg-white p-6 rounded-lg shadow-lg mt-8">
@@ -144,7 +144,7 @@
                         <input type="text" id="senderName" name="senderName" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                     <div>
-                        <label for="senderPhone" class="block mb-1 text-azul-oscuro">numero de Telefono</label>
+                        <label for="senderPhone" class="block mb-1 text-azul-oscuro">Número de Teléfono</label>
                         <input type="tel" id="senderPhone" name="senderPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                 </div>
@@ -165,7 +165,7 @@
                 </div>
                 
                 
-                <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Envio Transferencia</button>
+                <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Envío Transferencia</button>
             </form>
         </div>
 
@@ -178,24 +178,24 @@
                         <input type="text" id="rechargeSenderName" name="rechargeSenderName" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                     <div>
-                        <label for="rechargeSenderPhone" class="block mb-1 text-azul-oscuro">Telefono</label>
+                        <label for="rechargeSenderPhone" class="block mb-1 text-azul-oscuro">Teléfono</label>
                         <input type="tel" id="rechargeSenderPhone" name="rechargeSenderPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
                 </div>
                 <div>
-                    <label for="rechargeReceiverPhone" class="block mb-1 text-azul-oscuro">Telefono destinatario</label>
+                    <label for="rechargeReceiverPhone" class="block mb-1 text-azul-oscuro">Teléfono destinatario</label>
                     <input type="tel" id="rechargeReceiverPhone" name="rechargeReceiverPhone" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                 </div>
                 <div>
                     <label for="rechargeAmount" class="block mb-1 text-azul-oscuro">Cantidad de la recarga</label>
                     <input type="number" id="rechargeAmount" name="rechargeAmount" required min="0" step="0.01" class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                 </div>
-                <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Envio de Recarga</button>
+                <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Envío de Recarga</button>
             </form>
         </div>
 
         <div id="confirmationPage" class="hidden bg-white p-6 rounded-lg shadow-lg mt-8">
-            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Confirmacion de la transaccion</h2>
+            <h2 class="text-2xl font-semibold mb-6 text-azul-oscuro">Confirmación de la transacción</h2>
             <div id="confirmationDetails" class="bg-fondo p-4 rounded-lg"></div>
             <button onclick="goToHomepage()" class="mt-6 w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Back to Homepage</button>
         </div>
