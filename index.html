@@ -56,7 +56,7 @@
             </button>
             <button onclick="showForm('mobileRecharge')" class="bg-white text-azul-oscuro p-8 rounded-lg shadow-lg hover:bg-azul-claro hover:text-white transition-colors duration-300 transform hover:scale-105">
                 <h2 class="text-2xl font-semibold mb-3">Recargas Telefonicas</h2>
-                <p class="text-lg">Recharge your mobile phone instantly</p>
+                <p class="text-lg">Recarga tu celular  rapidamente</p>
             </button>
             <button onclick="showForm('moneyTransfer')" class="bg-white text-azul-oscuro p-8 rounded-lg shadow-lg hover:bg-azul-claro hover:text-white transition-colors duration-300 transform hover:scale-105">
                 <h2 class="text-2xl font-semibold mb-3">Money Orders</h2>
@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <div>
-                    <label for="email" class="block mb-1 text-azul-oscuro">Correo Electronico</label>
+                    <label for="email" class="block mb-1 text-azul-oscuro">Correo Electronico (si lo desea) </label>
                     <input type="email" id="email" name="email" required min="0" step="0.01" class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                 </div>
                 <div>
@@ -98,8 +98,8 @@
                     </div>
                 </div>
                 <div>
-                    <label for="typeAcount" class="block mb-1 text-azul-oscuro">Nombre de la Cuenta</label>
-                    <select id="typeAcount" name="typeAcount" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                    <label for="tipo_cuenta" class="block mb-1 text-azul-oscuro">Nombre de la Cuenta</label>
+                    <select id="tipo_cuenta" name="tipo_cuenta" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                         <option value="" disabled selected>Seleccione el nombre de la cuenta</option>
                         <option value="ahorro">Ahorro</option>
                         <option value="monetaria">Monetaria</option>
@@ -118,10 +118,6 @@
                 </div>
                 <div class="grid md:grid-cols-3 gap-4">
                     <div>
-                        <label for="country" class="block mb-1 text-azul-oscuro">Pais destinatario</label>
-                        <input type="text" id="country" name="country" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
-                    </div>
-                    <div>
                         <label for="city" class="block mb-1 text-azul-oscuro">Ciudad destinatario</label>
                         <input type="text" id="city" name="city" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
@@ -129,6 +125,12 @@
                         <label for="state" class="block mb-1 text-azul-oscuro">Estado destinatario </label>
                         <input type="text" id="state" name="state" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
                     </div>
+                    <div>
+                        <label for="country" class="block mb-1 text-azul-oscuro">Pais destinatario</label>
+                        <input type="text" id="country" name="country" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro">
+                    </div>
+                    
+                    
                 </div>
                 <button type="submit" class="w-full bg-azul-oscuro text-white p-3 rounded-lg hover:bg-azul-claro transition-colors duration-300 text-lg font-semibold">Envio Transferencia</button>
             </form>
@@ -148,7 +150,7 @@
                 </div>
                 <div>
                     <label for="moneyOrder" class="block mb-1 text-azul-oscuro">Money Order</label>
-                    <select id="moneyOrder" name="moneyOrder" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro" onchange="renderMoneyOrderInputs()">
+                    <select id="moneyOrder" name="moneyOrder" required class="w-full p-2 border border-azul-claro rounded focus:outline-none focus:ring-2 focus:ring-azul-oscuro"  onchange="renderMoneyOrderInputs()">
                         <option value="" disabled selected>Seleccione cantidad</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
