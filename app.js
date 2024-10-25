@@ -2,6 +2,11 @@ document.getElementById('backButton').addEventListener('click', function() {
     goToHomepage();
 });
 
+// Manejo del botón de retroceso móvil
+document.getElementById('backButtonMobile').addEventListener('click', function() {
+    goToHomepage();
+});
+
 function showForm(formType) {
     document.getElementById('homepage').classList.add('hidden');
     document.getElementById('moneySendForm').classList.add('hidden');
@@ -12,7 +17,9 @@ function showForm(formType) {
 }
 
 function goToHomepage() {
+     // Mostrar la pantalla principal
     document.getElementById('homepage').classList.remove('hidden');
+    document.getElementById('moneySendForm').classList.add('hidden');
     document.getElementById('moneyTransferForm').classList.add('hidden');
     document.getElementById('mobileRechargeForm').classList.add('hidden');
     document.getElementById('confirmationPage').classList.add('hidden');
@@ -26,6 +33,9 @@ function showConfirmation(details) {
     document.getElementById('confirmationPage').classList.remove('hidden');
     document.getElementById('confirmationDetails').innerHTML = details;
 }
+
+
+
 
 // Manejo del envío de dinero
 document.getElementById('sendForm').addEventListener('submit', async function(e) {
