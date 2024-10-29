@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> - Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <div class="min-h-screen flex">
+      <!-- Sidebar (same as index.html) -->
+      <aside
+        id="sidebar"
+        class="bg-indigo-800 text-white w-64 flex-shrink-0 hidden lg:block transition-all duration-300 ease-in-out"
+      >
+        <div class="p-4">
+          <h2 class="text-2xl font-bold mb-4">Admin Panel</h2>
+          <nav>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="./admin.html"
+                  class="block py-2 px-4 rounded hover:bg-indigo-700 transition"
+                  >Dashboard</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./transacciones.html"
+                  class="block py-2 px-4 rounded hover:bg-indigo-700 transition"
+                  >Transacciones</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./clientes.html"
+                  class="block py-2 px-4 rounded hover:bg-indigo-700 transition"
+                  >Clientes</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./reportes.html"
+                  class="block py-2 px-4 rounded hover:bg-indigo-700 transition"
+                  >Reportes</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./analisis.html"
+                  class="block py-2 px-4 rounded hover:bg-indigo-700 transition"
+                  >Análisis</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./configuraciones.html"
+                  class="block py-2 px-4 rounded hover:bg-indigo-700 transition"
+                  >Configuraciones</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 overflow-x-hidden overflow-y-auto">
+        <header class="bg-white shadow-md p-4 flex justify-between items-center">
+          <button
+            id="sidebar-toggle"
+            class="lg:hidden text-gray-600 hover:text-gray-900"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+          <div class="flex items-center">
+            <span class="mr-2 text-gray-700">John Doe</span>
+            <img
+              src="https://source.unsplash.com/100x100/?portrait"
+              alt="User Avatar"
+              class="w-8 h-8 rounded-full"
+            />
+          </div>
+        </header>
+
+        <div class="bg-gray-100 text-gray-800">
+          <div class="container mx-auto py-8">
+            <h1 class="text-3xl font-bold mb-8 text-center text-blue-600">
+              Dashboard de Análisis - Supermercado San Andrés
+            </h1>
+
+            <!-- Filtros -->
+            <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+              <h2 class="text-2xl font-semibold mb-4 text-blue-500">Filtros</h2>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Filtro por cliente -->
+                <div>
+                  <label for="filtro-cliente" class="block text-sm font-medium text-gray-700">Buscar por Cliente</label>
+                  <input
+                    type="text"
+                    id="filtro-cliente"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                    placeholder="Nombre del cliente"
+                  />
+                </div>
+
+                <!-- Filtro por tipo de transacción -->
+                <div>
+                  <label for="filtro-tipo" class="block text-sm font-medium text-gray-700">Tipo de Transacción</label>
+                  <select
+                    id="filtro-tipo"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                  >
+                    <option value="all">Todos</option>
+                    <option value="envios">Envíos de Dinero</option>
+                    <option value="recargas">Recargas Móviles</option>
+                    <option value="moneyOrders">Money Orders</option>
+                  </select>
+                </div>
+
+                <!-- Filtro por fecha -->
+                <div>
+                  <label for="filtro-fecha" class="block text-sm font-medium text-gray-700">Fecha</label>
+                  <input
+                    type="date"
+                    id="filtro-fecha"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                  />
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <button
+                  id="aplicar-filtros"
+                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Aplicar Filtros
+                </button>
+                <span id="loading" class="text-blue-600 ml-4 hidden">Cargando...</span>
+              </div>
+            </div>
+
+            <!-- Sección de análisis de clientes -->
+            <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+              <h2 class="text-2xl font-semibold mb-4 text-blue-500">Análisis de Clientes</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xl mb-4">Total de clientes registrados: <span id="total-clientes" class="font-bold text-blue-600"></span></p>
+                  <h3 class="text-lg font-semibold mb-2">Clientes con más transacciones:</h3>
+                  <ul id="top-clientes" class="list-disc pl-6 text-blue-600"></ul>
+                </div>
+                <div>
+                  <canvas id="transaccionesPorCliente" class="w-full h-64"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sección de análisis de transacciones -->
+            <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+              <h2 class="text-2xl font-semibold mb-4 text-blue-500">Análisis de Transacciones</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xl mb-4">Total de transacciones completadas: <span id="total-transacciones" class="font-bold text-blue-600"></span></p>
+                  <p class="text-xl mb-4">Monto total transferido o recargado: $<span id="monto-total" class="font-bold text-blue-600"></span></p>
+                </div>
+                <div>
+                  <canvas id="transaccionesPorTipo" class="w-full h-64"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sección de análisis temporal -->
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <h2 class="text-2xl font-semibold mb-4 text-blue-500">Análisis Temporal</h2>
+              <canvas id="transaccionesPorFecha" class="w-full h-64"></canvas>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="pagination-controls">
+  <button id="prev-page" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" disabled>Anterior</button>
+  <button id="next-page" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Siguiente</button>
+</div>
+<script>
+  let clientesChart, transaccionesTipoChart, transaccionesFechaChart;
+  let currentPage = 0;  // Control de paginación
+  const pageSize = 10;  // Tamaño de página para la paginación
+
+  // Función para realizar la solicitud a los endpoints del backend y cargar los datos con paginación
+  async function cargarDatosConPaginacion() {
+    // Mostrar estado de carga
+    document.getElementById("loading").classList.remove("hidden");
+
+    try {
+      // Construir la URL de paginación
+      const clientesUrl = `/analisis/clientes?skip=${currentPage}&limit=${pageSize}`;
+      const transaccionesUrl = `/analisis/transacciones?skip=${currentPage}&limit=${pageSize}`;
+
+      // Solicitar datos de clientes con paginación
+      const clientesResponse = await fetch(clientesUrl);
+      const clientesData = await clientesResponse.json();
+
+      // Solicitar datos de transacciones con paginación
+      const transaccionesResponse = await fetch(transaccionesUrl);
+      const transaccionesData = await transaccionesResponse.json();
+
+      // Actualizar dashboard con los datos paginados
+      actualizarDashboard(clientesData.topClientes, transaccionesData);
+
+      // Control de habilitación de los botones de paginación
+      document.getElementById("prev-page").disabled = currentPage === 0;
+      document.getElementById("next-page").disabled = clientesData.topClientes.length < pageSize;
+    } catch (error) {
+      console.error("Error al cargar los datos:", error);
+      alert("Ocurrió un error al cargar los datos.");
+    } finally {
+      // Ocultar estado de carga
+      document.getElementById("loading").classList.add("hidden");
+    }
+  }
+
+  // Función para aplicar filtros y solicitar datos del backend con filtros
+  document.getElementById("aplicar-filtros").addEventListener("click", async () => {
+    const filtroCliente = document.getElementById("filtro-cliente").value.toLowerCase();
+    const filtroTipo = document.getElementById("filtro-tipo").value;
+    const filtroFecha = document.getElementById("filtro-fecha").value;
+
+    // Mostrar estado de carga
+    document.getElementById("loading").classList.remove("hidden");
+
+    try {
+      // Construir la URL de clientes con filtro de nombre
+      let clientesUrl = `/analisis/clientes?skip=${currentPage}&limit=${pageSize}`;
+      if (filtroCliente) {
+        clientesUrl += `&nombre_cliente=${filtroCliente}`;
+      }
+
+      // Solicitar datos de clientes con filtros
+      const clientesResponse = await fetch(clientesUrl);
+      const clientesData = await clientesResponse.json();
+
+      // Construir la URL de transacciones con filtro de tipo o fecha
+      let transaccionesUrl = `/analisis/transacciones?skip=${currentPage}&limit=${pageSize}&tipo=${filtroTipo}`;
+      if (filtroFecha) {
+        transaccionesUrl = `/analisis/transacciones/fecha?fecha=${filtroFecha}`;
+      }
+
+      // Solicitar datos de transacciones con filtros
+      const transaccionesResponse = await fetch(transaccionesUrl);
+      const transaccionesData = await transaccionesResponse.json();
+
+      // Actualizar dashboard con los datos filtrados
+      actualizarDashboard(clientesData.topClientes, transaccionesData);
+
+      // Control de habilitación de los botones de paginación
+      document.getElementById("prev-page").disabled = currentPage === 0;
+      document.getElementById("next-page").disabled = clientesData.topClientes.length < pageSize;
+    } catch (error) {
+      console.error("Error al aplicar los filtros:", error);
+      alert("Ocurrió un error al aplicar los filtros.");
+    } finally {
+      // Ocultar estado de carga
+      document.getElementById("loading").classList.add("hidden");
+    }
+  });
+
+  // Función para actualizar el dashboard con los datos obtenidos
+  function actualizarDashboard(clientes, transacciones) {
+    // Actualizar clientes
+    document.getElementById("total-clientes").innerText = clientes.length;
+    const topClientesElement = document.getElementById("top-clientes");
+    topClientesElement.innerHTML = "";
+    clientes.forEach(cliente => {
+      const li = document.createElement("li");
+      li.innerText = `${cliente.nombre} - ${cliente.totalTransacciones} transacciones`;
+      topClientesElement.appendChild(li);
+    });
+
+    // Actualizar gráfico de transacciones por cliente
+    if (clientesChart) clientesChart.destroy();
+    const ctxClientes = document.getElementById("transaccionesPorCliente").getContext("2d");
+    clientesChart = new Chart(ctxClientes, {
+      type: "bar",
+      data: {
+        labels: clientes.map(cliente => cliente.nombre),
+        datasets: [{
+          label: "Transacciones por Cliente",
+          data: clientes.map(cliente => cliente.totalTransacciones),
+          backgroundColor: "rgba(54, 162, 235, 0.2)",
+          borderColor: "rgba(54, 162, 235, 1)",
+          borderWidth: 1
+        }]
+      }
+    });
+
+    // Actualizar gráfico de transacciones por tipo
+    if (transaccionesTipoChart) transaccionesTipoChart.destroy();
+    const ctxTransaccionesPorTipo = document.getElementById("transaccionesPorTipo").getContext("2d");
+    transaccionesTipoChart = new Chart(ctxTransaccionesPorTipo, {
+      type: "pie",
+      data: {
+        labels: ["Envíos de Dinero", "Recargas Móviles", "Money Orders"],
+        datasets: [{
+          data: [
+            transacciones.totalEnvios || 0,
+            transacciones.totalRecargas || 0,
+            transacciones.totalOrders || 0,
+          ],
+          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        }]
+      }
+    });
+
+    // Actualizar gráfico de transacciones por fecha
+    if (transaccionesFechaChart) transaccionesFechaChart.destroy();
+    const ctxTransaccionesPorFecha = document.getElementById("transaccionesPorFecha").getContext("2d");
+    transaccionesFechaChart = new Chart(ctxTransaccionesPorFecha, {
+      type: "line",
+      data: {
+        labels: transacciones.transaccionesPorFecha.map(trans => trans.fecha),
+        datasets: [{
+          label: "Transacciones",
+          data: transacciones.transaccionesPorFecha.map(trans => trans.total),
+          fill: false,
+          borderColor: "rgba(75, 192, 192, 1)",
+          tension: 0.1
+        }]
+      }
+    });
+
+    // Actualizar totales
+    document.getElementById("total-transacciones").innerText = transacciones.totalTransacciones || 0;
+    document.getElementById("monto-total").innerText = transacciones.montoTotal || 0;
+  }
+
+  // Función para manejar la paginación (Botones Siguiente/Anterior)
+  document.getElementById("next-page").addEventListener("click", () => {
+    currentPage += pageSize;
+    cargarDatosConPaginacion();
+  });
+
+  document.getElementById("prev-page").addEventListener("click", () => {
+    if (currentPage > 0) {
+      currentPage -= pageSize;
+      cargarDatosConPaginacion();
+    }
+  });
+
+  // Cargar los datos iniciales cuando la página está lista
+  window.onload = cargarDatosConPaginacion;
+</script>
+
+
+  </body>
+</html>

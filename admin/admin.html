@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Improved Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'azul-claro': '#478bbe',
+                        'azul-oscuro': '#1c4691',
+                        'fondo': '#ecf3f8',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans">
+
+    <main class="flex-grow container mx-auto p-6">
+      <h2 class="text-xl font-semibold text-gray-800 mb-4">Transacciones Pendientes</h2>
+
+      <!-- Contenedor de transacciones -->
+      <div id="transaccionesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Las transacciones se cargarán dinámicamente aquí -->
+      </div>
+
+      <!-- Modal para detalles de transacción -->
+      <div id="transactionModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden flex items-center justify-center">
+          <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+              <h2 class="text-xl font-semibold text-gray-800 mb-4" id="modalTitle">Detalles de Transacción</h2>
+              <div id="transactionDetails"></div>
+              <div class="mt-6 flex justify-end space-x-4">
+                  <button onclick="completarTransaccion()" class="bg-green-500 text-white py-2 px-4 rounded">Marcar como Completada</button>
+                  <button onclick="closeModal()" class="bg-red-500 text-white py-2 px-4 rounded">Cerrar</button>
+              </div>
+          </div>
+      </div>
+  </main>
+
+  <footer class="bg-blue-800 text-white p-4 text-center">
+      <p>&copy; 2024 Sistema de Administración de Transacciones. Todos los derechos reservados.</p>
+  </footer>
+
+    <div class="min-h-screen flex">
+      <!-- Sidebar -->
+      <aside id="sidebar" class="bg-indigo-800 text-white w-64 flex-shrink-0 hidden lg:block transition-all duration-300 ease-in-out">
+        <div class="p-4">
+          <h2 class="text-2xl font-bold mb-4">Admin Panel</h2>
+          <nav>
+            <ul class="space-y-2">
+              <li><a href="./admin.html" class="block py-2 px-4 rounded hover:bg-indigo-700 transition">Dashboard</a></li>
+              <li><a href="./transacciones.html" class="block py-2 px-4 rounded hover:bg-indigo-700 transition">Transacciones</a></li>
+              <li><a href="./clientes.html" class="block py-2 px-4 rounded hover:bg-indigo-700 transition">Clientes</a></li>
+              <li><a href="./reportes.html" class="block py-2 px-4 rounded hover:bg-indigo-700 transition">Reportes</a></li>
+              <li><a href="./anlisis.html" class="block py-2 px-4 rounded hover:bg-indigo-700 transition">Analisis</a></li>
+              <li><a href="./configuraciones.html" class="block py-2 px-4 rounded hover:bg-indigo-700 transition">Configuraciones</a></li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 overflow-x-hidden overflow-y-auto">
+        <header class="bg-white shadow-md p-4 flex justify-between items-center">
+          <button id="sidebar-toggle" class="lg:hidden text-gray-600 hover:text-gray-900">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+          <div class="flex items-center">
+            <span class="mr-2 text-gray-700">John Doe</span>
+            <img src="https://source.unsplash.com/100x100/?portrait" alt="User Avatar" class="w-8 h-8 rounded-full">
+          </div>
+        </header>
+
+        <div class="p-6">
+          <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
+
+          <!-- Stats Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+            <div class="bg-white rounded-lg shadow-md p-6 flex items-center">
+              <div class="rounded-full bg-blue-100 p-3 mr-4">
+                <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="text-gray-500 text-sm">Total Transactions</p>
+                <p class="text-2xl font-bold" id="total-transactions">0</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 flex items-center">
+              <div class="rounded-full bg-green-100 p-3 mr-4">
+                <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="text-gray-500 text-sm">Total Amount</p>
+                <p class="text-2xl font-bold" id="total-amount">$0</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 flex items-center">
+              <div class="rounded-full bg-yellow-100 p-3 mr-4">
+                <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="text-gray-500 text-sm">Pending Transactions</p>
+                <p class="text-2xl font-bold" id="pending-transactions">0</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 flex items-center">
+              <div class="rounded-full bg-indigo-100 p-3 mr-4">
+                <svg class="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="text-gray-500 text-sm">Completed Transactions</p>
+                <p class="text-2xl font-bold" id="completed-transactions">0</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div class="bg-white rounded-lg shadow-md p-6">
+              <h3 class="text-xl font-semibold mb-4">Transaction Trends</h3>
+              <div id="transaction-chart"></div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6">
+              <h3 class="text-xl font-semibold mb-4">Transaction Types</h3>
+              <div id="transaction-types-chart"></div>
+            </div>
+          </div>
+
+          <!-- Recent Activity and Quick Actions -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div class="bg-white rounded-lg shadow-md p-6">
+              <h3 class="text-xl font-semibold mb-4">Recent Activity</h3>
+              <ul id="recent-activity" class="space-y-4"></ul>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6">
+              <h3 class="text-xl font-semibold mb-4">Quick Actions</h3>
+              <div class="grid grid-cols-2 gap-4">
+                <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition">New Transaction</button>
+                <button class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded transition">Add Client</button>
+                <button class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded transition">Generate Report</button>
+                <button class="bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded transition">View Analytics</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transactions Table -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-6 flex flex-col sm:flex-row justify-between items-center">
+              <h3 class="text-xl font-semibold mb-4 sm:mb-0">Recent Transactions</h3>
+              <div class="flex space-x-4">
+                <input type="text" id="search-input" placeholder="Search transactions" class="border rounded-lg px-4 py-2">
+                <select id="status-filter" class="border rounded-lg px-4 py-2">
+                  <option value="all">All Statuses</option>
+                  <option value="completed">Completed</option>
+                  <option value="pending">Pending</option>
+                </select>
+                <select id="type-filter" class="border rounded-lg px-4 py-2">
+                  <option value="all">All Types</option>
+                  <option value="transfer">Transfer</option>
+                  <option value="recharge">Recharge</option>
+                </select>
+              </div>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead class="bg-gray-100">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                  </tr>
+                </thead>
+                <tbody id="transactions-table"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="./js/admin-app.js"></script>
+  </body>
+</html>
