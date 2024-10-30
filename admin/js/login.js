@@ -1,5 +1,5 @@
  // URL de tu API con el prefijo /api
- const API_URL = 'http://127.0.0.1:8000/api';  // Prefijo /api
+ const API_URL = 'https://api-transacciones.onrender.com/api';  // Prefijo /api
 
  // Función para iniciar sesión
  document.getElementById('loginForm').addEventListener('submit', async function (event) {

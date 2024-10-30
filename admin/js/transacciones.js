@@ -1,5 +1,5 @@
 // URL base de la API
-const API_BASE_URL = "http://127.0.0.1:8000/api/admin/transacciones";
+const API_BASE_URL = "https://api-transacciones.onrender.com/api/admin/transacciones";
 
 // Elementos HTML
 const transactionsTable = document.getElementById("transactions-table");
